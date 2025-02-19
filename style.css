@@ -1,0 +1,89 @@
+header {
+    background-color: #263d36;
+    background-image: url("./images/Mountain-Zendikar-Rising-MtG-Art.jpg");
+    background-position: center top;
+    background-repeat: no-repeat;
+    background-size: cover;
+    line-height: 1.2;
+    padding: 10vw 2em;
+    text-align: center;
+}
+
+body {
+    margin: 0;
+}
+
+mark {
+    background-color: white;
+    color: #555;
+}
+
+body {
+    font-family: 'georgia';
+}
+
+body div {
+    margin: 0 auto;
+    max-width: 50em;
+    line-height: 1.5;
+    padding: 4em 1em;
+    color: #555;
+}
+
+footer {
+    background-color: #ececec;
+    background-position: center bottom;
+    display: block;
+    text-align: center;
+    padding: 0.5em;
+    font-size: 16pt;
+}
+
+h2 {
+    margin-top: 1em;
+    padding-top: 1em;
+}
+
+h1,
+h2,
+strong {
+    color: #333;
+    /* margin-top: -3em; */
+    font-weight: normal;
+}
+
+.maintitle {
+    color: white;
+    font-weight: normal;
+    font-size: 5em;
+    margin-top: 0em;
+}
+
+h6 {
+    text-align:right;
+    color:black;
+    margin-top:-1em;
+    margin-bottom:-0.5em;
+    font-weight: normal;
+}
+
+.linkstyle1 {
+    color: #D9111E;
+}
+
+.linkstyle2 {
+    /* color: #ffe9c2; */
+    color: white;
+    margin-right: 0.5em;
+    margin-left: 0.5em;
+    font-size: 1.5em;
+    
+}
+
+.align-center {
+    text-align: center;
+}
+
+p {
+    font-size: 14pt;
+}
