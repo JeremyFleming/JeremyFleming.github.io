@@ -71,7 +71,7 @@ var additions = [toughkit0, toughkit3, toughkit4]
 //   preload: true,
 // })
 
-// document.querySelector(".play_pause").addEventListener("click", () => {
+//   document.querySelector(".play_pause").addEventListener("click", () => {
 //   const kick = Math.floor(Math.random() * kicks.length);
 //   const addition = Math.floor(Math.random() * additions.length);
 //   kicks[kick].play();
@@ -85,7 +85,7 @@ var additions = [toughkit0, toughkit3, toughkit4]
 //   // sillyHowls.forEach(function(element) {
 //   //   element.play();
 //   // });
-// });
+//   });
 
 var playing = false;
 var index = 0;
