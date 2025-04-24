@@ -33,6 +33,11 @@ var toughkit5 = new Howl({
   preload: true,
 })
 
+var hexatonicTestFolder = './sounds/HexatonicTest/HexatonicTest'
+var songBases = ['1', '2', '3', '4', '5', '6', '7']
+var hexatonicFileType = '.mp3'
+var hexatonicHowls = []
+
 // var midtermFolder = './sounds/1050Midterm/1050Midterm'
 // var midtermFiles = ['Bass', 'DropBass', 'Drums1', 'Drums2', 'Melody', 'Piano']
 // var midtermFileType = '.mp3'
@@ -66,18 +71,122 @@ var additions = [toughkit0, toughkit3, toughkit4]
 //   preload: true,
 // })
 
-document.querySelector(".play_pause").addEventListener("click", () => {
-  const kick = Math.floor(Math.random() * kicks.length);
-  const addition = Math.floor(Math.random() * additions.length);
-  kicks[kick].play();
-  additions[addition].play();
+// document.querySelector(".play_pause").addEventListener("click", () => {
+//   const kick = Math.floor(Math.random() * kicks.length);
+//   const addition = Math.floor(Math.random() * additions.length);
+//   kicks[kick].play();
+//   additions[addition].play();
   
-  // midtermHowls.forEach(function(element) {
-  //   element.play();
-  // });
-  // silly.play();
+//   // midtermHowls.forEach(function(element) {
+//   //   element.play();
+//   // });
+//   // silly.play();
 
-  // sillyHowls.forEach(function(element) {
-  //   element.play();
-  // });
-});
+//   // sillyHowls.forEach(function(element) {
+//   //   element.play();
+//   // });
+// });
+
+var playing = false;
+var index = 0;
+var firstPlay = true;
+
+const kick = Math.floor(Math.random() * kicks.length);
+const addition = Math.floor(Math.random() * additions.length);
+
+// var Player = function(playlist) {
+//   this.playlist = playlist;
+//   this.index = 0;
+// };
+
+for (let i = 0; i < songBases.length; i++) {
+  hexatonicHowls.push(new Howl({
+    src: [hexatonicTestFolder + songBases[i] + hexatonicFileType],
+    preload: true,
+  }));
+}
+
+function branch(elem) {
+  var elemid = elem.id;
+  var elemind = 0
+  switch (elemid) {
+    case "song1":
+      elemind = 0;
+      break;
+    case "song2":
+      elemind = 1;
+      break;
+    case "song3":
+      elemind = 2;
+      break;
+    case "song4":
+      elemind = 3;
+      break;
+    case "song5":
+      elemind = 4;
+      break;
+    case "song6":
+      elemind = 5;
+      break;
+    case "song7":
+      elemind = 6;
+      break;
+    default:
+      return false;
+  }
+  playPause(elemind);
+}
+
+function playPause(elemind) {
+  var elemid = "song" + (elemind+1).toString();
+
+  if (firstPlay) {
+    for (let i = 0; i < hexatonicHowls.length; i++) {
+      if (i != hexatonicHowls.length - 1) {
+        hexatonicHowls[i].on('end', function(){
+          // alert("song" + (i+2).toString());
+          playPause(i+1);
+        });
+      } else {
+        hexatonicHowls[i].on('end', function(){
+          document.getElementById("song" + (i+1).toString()).style.textDecoration = 'none';
+          document.getElementById("song" + (i+1).toString()).style.backgroundImage = 'url(./images/play_icon.png';
+          // hexatonicHowls[i].stop();
+          playing=false;
+        });
+      }
+    };
+    firstPlay = false;
+  }
+
+  // elemidi = parseInt(elemid) - 1;
+  // alert(elem.id);
+  // index = 0;
+  if (elemind != index) {
+    hexatonicHowls[index].stop();
+    elemid = "song" + (index+1).toString();
+    document.getElementById(elemid).style.textDecoration = 'none';
+    document.getElementById(elemid).style.backgroundImage = 'url(./images/play_icon.png';
+    index = elemind;
+    elemid = "song" + (index+1).toString();
+    document.getElementById(elemid).style.textDecoration = 'underline';
+    hexatonicHowls[index].play();
+    playing = true;
+    document.getElementById(elemid).style.backgroundImage = 'url(./images/pause_icon.png';
+  } else {
+    document.getElementById(elemid).style.textDecoration = 'underline';
+    if (playing) {
+      hexatonicHowls[index].pause();
+      // kicks[kick].pause();
+      // additions[addition].pause();
+      playing = false;
+      document.getElementById(elemid).style.backgroundImage = 'url(./images/play_icon.png';
+    } else {
+      hexatonicHowls[index].play();
+      // kicks[kick].play();
+      // additions[addition].play();
+      playing = true;
+      document.getElementById(elemid).style.backgroundImage = 'url(./images/pause_icon.png';
+    }
+  }
+};

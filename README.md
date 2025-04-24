@@ -1,0 +1,1 @@
+A lot of the code for the capstone website was inspired by https://github.com/goldfire/howler.js/blob/master/examples/player and https://github.com/codewithsadee/music-player! 
